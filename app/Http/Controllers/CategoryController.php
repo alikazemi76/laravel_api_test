@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CategoryResource;
 use App\Http\Resources\PostResource;
+use App\Models\Category;
 use App\Models\Post;
 use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
@@ -13,42 +15,42 @@ class CategoryController extends Controller
 
     public function index()
     {
-        return $this->responseSuccess(PostResource::collection(Post::all()));
+        return $this->responseSuccess(CategoryResource::collection(Category::all()));
     }
 
 
     public function store(Request $request)
     {
-        $post = new Post();
-        $post->fill($request->all());
-        if ($post->save()) {
+        $category = new Category();
+        $category->fill($request->all());
+        if ($category->save()) {
             return $this->responseSuccess(
-                new PostResource($post),
-                ['post created successfully'],
+                new PostResource($category),
+                ['category created successfully'],
                 201
             );
         } else {
-            return $this->responseError(['post not created, please try again'], 501);
+            return $this->responseError(['category not created, please try again'], 501);
         }
 
     }
 
 
-    public function show(Post $post)
+    public function show(Category $category)
     {
-        return $this->responseSuccess(new PostResource($post));
+        return $this->responseSuccess(new PostResource($category));
     }
 
-    public function update(Request $request, Post $post)
+    public function update(Request $request, Category $category)
     {
-        $post->fill($request->all());
-        $post->save();
-        return $this->responseSuccess(new PostResource($post));
+        $category->fill($request->all());
+        $category->save();
+        return $this->responseSuccess(new PostResource($category));
     }
 
-    public function destroy(Post $post)
+    public function destroy(Category $category)
     {
-        $post->delete();
+        $category->delete();
         return $this->responseSuccess(null, [], 204);
     }
 }

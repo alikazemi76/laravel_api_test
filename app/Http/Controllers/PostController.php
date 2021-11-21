@@ -13,6 +13,7 @@ class PostController extends Controller
 
     public function index()
     {
+//        dd("dddddddddddddd");
         return $this->responseSuccess(PostResource::collection(Post::all()));
     }
 

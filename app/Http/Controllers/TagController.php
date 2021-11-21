@@ -19,36 +19,36 @@ class TagController extends Controller
 
     public function store(Request $request)
     {
-        $post = new Tag();
-        $post->fill($request->all());
-        if ($post->save()) {
+        $tag = new Tag();
+        $tag->fill($request->all());
+        if ($tag->save()) {
             return $this->responseSuccess(
-                new PostResource($post),
-                ['post created successfully'],
+                new TagResource($tag),
+                ['tag created successfully'],
                 201
             );
         } else {
-            return $this->responseError(['post not created, please try again'], 501);
+            return $this->responseError(['tag not created, please try again'], 501);
         }
 
     }
 
 
-    public function show(Post $post)
+    public function show(Tag $tag)
     {
-        return $this->responseSuccess(new PostResource($post));
+        return $this->responseSuccess(new TagResource($tag));
     }
 
-    public function update(Request $request, Post $post)
+    public function update(Request $request, Tag $tag)
     {
-        $post->fill($request->all());
-        $post->save();
-        return $this->responseSuccess(new PostResource($post));
+        $tag->fill($request->all());
+        $tag->save();
+        return $this->responseSuccess(new TagResource($tag));
     }
 
-    public function destroy(Post $post)
+    public function destroy(Tag $tag)
     {
-        $post->delete();
+        $tag->delete();
         return $this->responseSuccess(null, [], 204);
     }
 }
