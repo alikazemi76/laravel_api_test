@@ -19,7 +19,7 @@ class TagController extends Controller
 
     public function store(Request $request)
     {
-        $post = new Tag\();
+        $post = new Tag();
         $post->fill($request->all());
         if ($post->save()) {
             return $this->responseSuccess(
