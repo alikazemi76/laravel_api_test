@@ -12,3 +12,5 @@ use \Illuminate\Support\Facades\Route;
 
 Route::apiResource('posts', \App\Http\Controllers\PostController::class);
 Route::apiResource('users', \App\Http\Controllers\UserController::class);
+Route::apiResource('tags', \App\Http\Controllers\TagController::class);
+Route::apiResource('cate', \App\Http\Controllers\CategoryController::class);

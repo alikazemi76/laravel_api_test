@@ -14,13 +14,13 @@ class Post extends Model
     protected $fillable = [
         'title',
         'body',
-        'user_id',
-        'category_id',
+//        'user_id',
+//        'category_id',
     ];
 
     protected $guarded = [];
 
-    public function category()
+    public function cate()
     {
         return $this->belongsTo(Category::class, 'category_id');
     }
@@ -32,6 +32,6 @@ class Post extends Model
 
     public function tags()
     {
-        return $this->hasMany(Tag::class, 'post_id');
+        return $this->belongsToMany(Tag::class, 'posts_tags','post_id');
     }
 }

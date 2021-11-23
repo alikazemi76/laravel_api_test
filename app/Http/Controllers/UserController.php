@@ -17,7 +17,7 @@ class UserController extends Controller
     {
         return $this->responseSuccess(
             UserResource::collection(
-                User::all()
+                User::paginate(5)
             )
         );
     }
@@ -27,6 +27,7 @@ class UserController extends Controller
     {
         $user = new User();
         $user->fill($request->all());
+
         if ($user->save()) {
             return $this->responseSuccess(
                 new UserResource($user),

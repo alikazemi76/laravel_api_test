@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\CategoryResource;
-use App\Http\Resources\PostResource;
 use App\Models\Category;
-use App\Models\Post;
 use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
 
@@ -25,7 +23,7 @@ class CategoryController extends Controller
         $category->fill($request->all());
         if ($category->save()) {
             return $this->responseSuccess(
-                new PostResource($category),
+                new CategoryResource($category),
                 ['category created successfully'],
                 201
             );
@@ -36,16 +34,17 @@ class CategoryController extends Controller
     }
 
 
-    public function show(Category $category)
+    public function show(Category $cate)
     {
-        return $this->responseSuccess(new PostResource($category));
+        $cate->load('posts');
+        return $this->responseSuccess(new CategoryResource($cate));
     }
 
     public function update(Request $request, Category $category)
     {
         $category->fill($request->all());
         $category->save();
-        return $this->responseSuccess(new PostResource($category));
+        return $this->responseSuccess(new CategoryResource($category));
     }
 
     public function destroy(Category $category)

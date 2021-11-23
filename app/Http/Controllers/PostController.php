@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\PostResource;
+use App\Models\Category;
 use App\Models\Post;
 use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
@@ -37,6 +38,11 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
+//        $cate= $post::with('cate')->get();
+//        dd($cate);
+//        $post->$cate;
+
+        $post->load('user','tags','cate');
         return $this->responseSuccess(new PostResource($post));
     }
 

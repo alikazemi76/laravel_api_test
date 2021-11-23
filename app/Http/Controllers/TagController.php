@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\TagResource;
+use App\Models\Post;
 use App\Models\Tag;
 use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
@@ -34,8 +35,10 @@ class TagController extends Controller
     }
 
 
-    public function show(Tag $tag)
+    public function show(Tag $tag,Post  $post)
     {
+        $tag->load('posts');
+
         return $this->responseSuccess(new TagResource($tag));
     }
 
