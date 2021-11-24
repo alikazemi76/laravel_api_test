@@ -35,9 +35,9 @@ class TagController extends Controller
     }
 
 
-    public function show(Tag $tag,Post  $post)
+    public function show(Tag $tag)
     {
-        $tag->load('posts');
+        $tag->load(['posts.user' ,'posts.cate']);
 
         return $this->responseSuccess(new TagResource($tag));
     }

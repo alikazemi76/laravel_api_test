@@ -43,7 +43,7 @@ class UserController extends Controller
 
     public function show(User $user)
     {
-        $user->load('posts');
+        $user->load('posts','posts.cate','posts.tags');
         return $this->responseSuccess(new UserResource($user));
     }
 

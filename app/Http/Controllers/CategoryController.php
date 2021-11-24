@@ -36,7 +36,7 @@ class CategoryController extends Controller
 
     public function show(Category $cate)
     {
-        $cate->load('posts');
+        $cate->load('posts','posts.user','posts.tags');
         return $this->responseSuccess(new CategoryResource($cate));
     }
 
