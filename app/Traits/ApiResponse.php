@@ -10,8 +10,8 @@ trait ApiResponse
     public function responseSuccess($data, $messages = [], $code = 200 ,$meta=null)
     {
         if( $data instanceof AnonymousResourceCollection ){
-            if(isset($data->response()->getDate()->meta)){
-                $meta=$data->response()->getDate()->meta;
+            if(isset($data->response()->getData()->meta)){
+                $meta=$data->response()->getData()->meta;
             }
         }
         return response()->json([

@@ -15,7 +15,7 @@ class PostController extends Controller
     public function index()
     {
 //        dd((PostResource::collection(Post::paginate())));
-        return $this->responseSuccess(PostResource::collection(Post::paginate(2)));
+        return $this->responseSuccess(PostResource::collection(Post::paginate(1)));
     }
 
 

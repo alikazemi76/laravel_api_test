@@ -14,7 +14,7 @@ class TagController extends Controller
 
     public function index()
     {
-        return $this->responseSuccess(TagResource::collection(Tag::all()));
+        return $this->responseSuccess(TagResource::collection(Tag::paginate(3)));
     }
 
 

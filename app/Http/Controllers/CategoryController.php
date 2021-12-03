@@ -13,7 +13,7 @@ class CategoryController extends Controller
 
     public function index()
     {
-        return $this->responseSuccess(CategoryResource::collection(Category::all()));
+        return $this->responseSuccess(CategoryResource::collection(Category::paginate(3)));
     }
 
 
